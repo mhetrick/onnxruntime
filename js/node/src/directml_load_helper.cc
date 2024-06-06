@@ -21,17 +21,17 @@ void LoadDirectMLDll(Napi::Env env) {
       path.resize(pathLen);
       getModuleFileNameResult = GetModuleFileNameW(moduleHandle, const_cast<wchar_t *>(path.c_str()), pathLen);
     } else {
-      ORT_NAPI_THROW_ERROR(env, "Failed getting path to load DirectML.dll, error code: ", ret);
+      ORT_NAPI_THROW_ERROR(env, "Failed getting path to load SoundlabsDirectML.dll, error code: ", ret);
     }
   }
 
   path.resize(path.rfind(L'\\') + 1);
-  path.append(L"DirectML.dll");
+  path.append(L"SoundlabsDirectML.dll");
   HMODULE libraryLoadResult = LoadLibraryW(path.c_str());
 
   if (!libraryLoadResult) {
     int ret = GetLastError();
-    ORT_NAPI_THROW_ERROR(env, "Failed loading bundled DirectML.dll, error code: ", ret);
+    ORT_NAPI_THROW_ERROR(env, "Failed loading bundled SoundlabsDirectML.dll, error code: ", ret);
   }
 }
 #endif

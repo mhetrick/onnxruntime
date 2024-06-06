@@ -38,8 +38,8 @@ static std::wstring CurrentModulePath() {
 }
 
 Microsoft::WRL::ComPtr<IDMLDevice> CreateDmlDevice(ID3D12Device* d3d12Device) {
-  // Dynamically load DML to avoid WinML taking a static dependency on DirectML.dll
-  auto directml_dll = CurrentModulePath() + L"DirectML.dll";
+  // Dynamically load DML to avoid WinML taking a static dependency on SoundlabsDirectML.dll
+  auto directml_dll = CurrentModulePath() + L"SoundlabsDirectML.dll";
   wil::unique_hmodule dmlDll(LoadLibraryExW(directml_dll.c_str(), nullptr, 0));
   THROW_LAST_ERROR_IF(!dmlDll);
 
@@ -61,7 +61,7 @@ Microsoft::WRL::ComPtr<IDMLDevice> CreateDmlDevice(ID3D12Device* d3d12Device) {
   Microsoft::WRL::ComPtr<IDMLDevice> dmlDevice;
   THROW_IF_FAILED(dmlCreateDevice1Fn(d3d12Device, dmlFlags, DML_FEATURE_LEVEL_2_0, IID_PPV_ARGS(&dmlDevice)));
 
-  // Keep DirectML.dll loaded by leaking the handle. This is equivalent behavior to if we delay-loaded the DLL.
+  // Keep SoundlabsDirectML.dll loaded by leaking the handle. This is equivalent behavior to if we delay-loaded the DLL.
   dmlDll.release();
 
   return dmlDevice;
