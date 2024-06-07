@@ -20,7 +20,7 @@
 
 set(onnxruntime_USE_CUSTOM_DIRECTML OFF CACHE BOOL "Depend on a custom/internal build of DirectML.")
 set(dml_EXTERNAL_PROJECT OFF CACHE BOOL "Build DirectML as a source dependency.")
-set(DML_SHARED_LIB DirectML.dll)
+set(DML_SHARED_LIB SoundlabsDirectML.dll)
 
 if (NOT onnxruntime_USE_CUSTOM_DIRECTML)
   if (NOT(MSVC) OR NOT(WIN32))
@@ -42,6 +42,8 @@ if (NOT onnxruntime_USE_CUSTOM_DIRECTML)
   set(PACKAGES_CONFIG ${PROJECT_SOURCE_DIR}/../packages.config)
   get_filename_component(PACKAGES_DIR ${CMAKE_CURRENT_BINARY_DIR}/../packages ABSOLUTE)
   set(DML_PACKAGE_DIR ${PACKAGES_DIR}/Microsoft.AI.DirectML.1.14.1)
+
+  configure_file(${DML_PACKAGE_DIR}/bin/x64-win/DirectML.dll ${DML_PACKAGE_DIR}/bin/x64-win/SoundlabsDirectML.dll COPYONLY)
 
   # Restore nuget packages, which will pull down the DirectML redist package.
   add_custom_command(

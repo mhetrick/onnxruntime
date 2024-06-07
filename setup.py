@@ -331,7 +331,7 @@ else:
     libs.extend(["onnxruntime_providers_cuda.dll"])
     libs.extend(["onnxruntime_providers_vitisai.dll"])
     # DirectML Libs
-    libs.extend(["DirectML.dll"])
+    libs.extend(["SoundlabsDirectML.dll"])
     # QNN V68/V73 dependencies
     qnn_deps = [
         "QnnCpu.dll",
