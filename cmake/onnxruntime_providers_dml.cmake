@@ -22,7 +22,7 @@
   endif()
 
   if (NOT onnxruntime_USE_CUSTOM_DIRECTML)
-    foreach(file "DirectML.dll" "DirectML.pdb" "DirectML.Debug.dll" "DirectML.Debug.pdb")
+    foreach(file "SoundlabsDirectML.dll" "DirectML.pdb" "DirectML.Debug.dll" "DirectML.Debug.pdb")
       add_custom_command(TARGET onnxruntime_providers_dml
         POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different

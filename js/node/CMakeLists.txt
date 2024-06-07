@@ -114,7 +114,7 @@ if (WIN32)
     add_custom_command(
       TARGET onnxruntime_binding POST_BUILD
       COMMAND ${CMAKE_COMMAND} -E copy
-      ${ONNXRUNTIME_WIN_BIN_DIR}/DirectML.dll
+      ${ONNXRUNTIME_WIN_BIN_DIR}/SoundlabsDirectML.dll
       ${dist_folder}
     )
   endif ()

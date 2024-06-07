@@ -1824,7 +1824,7 @@ def setup_dml_build(args, cmake_path, build_dir, configs):
         return
 
     if args.dml_path:
-        for expected_file in ["bin/DirectML.dll", "lib/DirectML.lib", "include/DirectML.h"]:
+        for expected_file in ["bin/SoundlabsDirectML.dll", "lib/DirectML.lib", "include/DirectML.h"]:
             file_path = os.path.join(args.dml_path, expected_file)
             if not os.path.exists(file_path):
                 raise BuildError("dml_path is invalid.", f"dml_path='{args.dml_path}' expected_file='{file_path}'.")
