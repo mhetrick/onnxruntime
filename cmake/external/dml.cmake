@@ -57,15 +57,15 @@ if (NOT onnxruntime_USE_CUSTOM_DIRECTML)
     VERBATIM
   )
 
-  add_custom_command(
-    OUTPUT
-      ${DML_PACKAGE_DIR}/bin/x64-win/SoundlabsDirectML.dll
-    DEPENDS
-      ${PACKAGES_CONFIG}
-      ${NUGET_CONFIG}
-    COMMAND ${CMAKE_COMMAND} -E copy ${DML_PACKAGE_DIR}/bin/x64-win/DirectML.dll ${DML_PACKAGE_DIR}/bin/x64-win/SoundlabsDirectML.dll 
-    VERBATIM
-  )
+  # add_custom_command(
+  #   OUTPUT
+  #     ${DML_PACKAGE_DIR}/bin/x64-win/SoundlabsDirectML.dll
+  #   DEPENDS
+  #     ${PACKAGES_CONFIG}
+  #     ${NUGET_CONFIG}
+  #   COMMAND ${CMAKE_COMMAND} -E copy ${DML_PACKAGE_DIR}/bin/x64-win/DirectML.dll ${DML_PACKAGE_DIR}/bin/x64-win/SoundlabsDirectML.dll 
+  #   VERBATIM
+  # )
 
   #configure_file(${DML_PACKAGE_DIR}/bin/x64-win/DirectML.dll ${DML_PACKAGE_DIR}/bin/x64-win/SoundlabsDirectML.dll COPYONLY)
 

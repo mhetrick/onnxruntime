@@ -1824,6 +1824,11 @@ def setup_dml_build(args, cmake_path, build_dir, configs):
         return
 
     if args.dml_path:
+
+        baseDLL = os.path.join(args.dml_path, "bin/DirectML.dll")
+        newDLL = os.path.join(args.dml_path, "bin/SoundlabsDirectML.dll")
+        shutil.copyfile(baseDLL, newDLL)
+
         for expected_file in ["bin/SoundlabsDirectML.dll", "lib/DirectML.lib", "include/DirectML.h"]:
             file_path = os.path.join(args.dml_path, expected_file)
             if not os.path.exists(file_path):
