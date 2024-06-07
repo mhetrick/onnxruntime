@@ -43,8 +43,6 @@ if (NOT onnxruntime_USE_CUSTOM_DIRECTML)
   get_filename_component(PACKAGES_DIR ${CMAKE_CURRENT_BINARY_DIR}/../packages ABSOLUTE)
   set(DML_PACKAGE_DIR ${PACKAGES_DIR}/Microsoft.AI.DirectML.1.14.1)
 
-  configure_file(${DML_PACKAGE_DIR}/bin/x64-win/DirectML.dll ${DML_PACKAGE_DIR}/bin/x64-win/SoundlabsDirectML.dll COPYONLY)
-
   # Restore nuget packages, which will pull down the DirectML redist package.
   add_custom_command(
     OUTPUT
@@ -58,6 +56,18 @@ if (NOT onnxruntime_USE_CUSTOM_DIRECTML)
     COMMAND ${CMAKE_CURRENT_BINARY_DIR}/nuget/src/nuget restore ${PACKAGES_CONFIG} -PackagesDirectory ${PACKAGES_DIR} -ConfigFile ${NUGET_CONFIG}
     VERBATIM
   )
+
+  add_custom_command(
+    OUTPUT
+      ${DML_PACKAGE_DIR}/bin/x64-win/SoundlabsDirectML.dll
+    DEPENDS
+      ${PACKAGES_CONFIG}
+      ${NUGET_CONFIG}
+    COMMAND ${CMAKE_COMMAND} -E copy ${DML_PACKAGE_DIR}/bin/x64-win/DirectML.dll ${DML_PACKAGE_DIR}/bin/x64-win/SoundlabsDirectML.dll 
+    VERBATIM
+  )
+
+  #configure_file(${DML_PACKAGE_DIR}/bin/x64-win/DirectML.dll ${DML_PACKAGE_DIR}/bin/x64-win/SoundlabsDirectML.dll COPYONLY)
 
   include_directories(BEFORE "${DML_PACKAGE_DIR}/include")
   add_custom_target(
